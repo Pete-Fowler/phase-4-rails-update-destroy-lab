@@ -1,7 +1,6 @@
 class PlantsController < ApplicationController
   wrap_parameters format: []
 
-  rescue from ActiveRecord::RecordNotFound with :render_not_found_response
 
   # GET /plants
   def index
@@ -24,7 +23,7 @@ class PlantsController < ApplicationController
   def update 
     plant = Plant.find(params[:id])
     plant.update(plant_params) 
-    plant 
+    render json: plant 
   end 
 
   def destroy 
@@ -32,7 +31,7 @@ class PlantsController < ApplicationController
     plant.destroy 
     render json: {} 
   end 
-  
+
   private
 
   def plant_params
